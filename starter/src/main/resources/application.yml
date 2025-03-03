@@ -1,0 +1,10 @@
+# 端口配置
+server:
+  port: 8081
+
+spring:
+  profiles:
+    active: ${RUN_ENV:dev}
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
