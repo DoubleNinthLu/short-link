@@ -1,6 +1,9 @@
 package com.omlucy.shortlink.web;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.omlucy.shortlink.dto.request.ShortLinkPageQuery;
 import com.omlucy.shortlink.dto.response.ApiResponse;
+import com.omlucy.shortlink.dto.response.ShortLinkVO;
 import com.omlucy.shortlink.service.ShortLinkService;
 import com.omlucy.shortlink.shortlink.ShortLinkCreateCmd;
 import jakarta.validation.Valid;
@@ -24,8 +27,14 @@ public class ShortLinkController {
     }
 
     @PostMapping("/create")
-    public ApiResponse<String> create(@RequestBody @Valid ShortLinkCreateCmd createCmd) {
+    public ApiResponse<ShortLinkVO> create(@RequestBody @Valid ShortLinkCreateCmd createCmd) {
         return ApiResponse.success(shortLinkService.createShortLink(createCmd));
+    }
+
+
+    @PostMapping("/list")
+    public ApiResponse<IPage<ShortLinkVO>> list(@RequestBody @Valid ShortLinkPageQuery pageQuery) {
+        return ApiResponse.success(shortLinkService.listShortLink(pageQuery));
     }
 
 }

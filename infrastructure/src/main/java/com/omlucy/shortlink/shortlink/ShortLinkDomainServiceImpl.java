@@ -4,6 +4,8 @@ import cn.hutool.core.date.StopWatch;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -40,7 +42,7 @@ public class ShortLinkDomainServiceImpl implements ShortLinkDomainService {
                 .shortCode(shortCode)
                 .domain(createCmd.getDomain())
                 .originalUrl(createCmd.getOriginalUrl())
-                .expirationTime(createCmd.getExpirationTime())
+                .expirationTime(Optional.ofNullable(createCmd.getExpirationTime()).orElse(LocalDate.now().plusMonths(1).atStartOfDay()))
                 .description(createCmd.getDescription())
                 .build();
 

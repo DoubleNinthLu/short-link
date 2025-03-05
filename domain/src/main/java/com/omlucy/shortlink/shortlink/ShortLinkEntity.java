@@ -30,10 +30,10 @@ public class ShortLinkEntity {
     private ShortLinkStatusEnum status;
 
 
-    public String getShortLink() {
+    public String getShortUrl() {
         if (domain.endsWith("/")) {
-            return domain + shortCode;
+            return domain + "s/" + shortCode;
         }
-        return domain + "/" + shortCode;
+        return domain + "/s/" + shortCode;
     }
 }

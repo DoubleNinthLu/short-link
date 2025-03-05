@@ -26,6 +26,7 @@ public class ShortLinkRepositoryImpl extends ServiceImpl<ShortLinkMapper, ShortL
     public IPage<ShortLinkEntity> findByUserId(Long userId, Pageable pageable) {
         return lambdaQuery()
                 .eq(ShortLinkPO::getUserId, userId)
+                .orderByDesc(ShortLinkPO::getCreateTime)
                 .page(new Page<>(pageable.getPageNumber(), pageable.getPageSize()))
                 .convert(shortLinkConverter::toEntity);
     }
